@@ -13,9 +13,10 @@ connectDB();
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors({
-    origin: 'https://valentine-s-day-rho-five.vercel.app/',
+    origin: 'process.env.FRONTEND_URL',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 app.use(router);
 
