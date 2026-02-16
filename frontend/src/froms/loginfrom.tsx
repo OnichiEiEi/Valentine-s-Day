@@ -16,13 +16,6 @@ export default function LoginForm() {
     const token = await userCredential.user.getIdToken();
 
     console.log("User token:", token);
-    await fetch("http://localhost:5000/api/secret", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
     alert("Login successful!");
     router.push("/");
     } catch (error: any) {
