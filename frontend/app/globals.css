@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+body {
+  font-family: var(--font-pt-serif), serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-fleur-de-leah), sans-serif;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 15s linear infinite;
+}
