@@ -9,6 +9,10 @@ import {
 
 export default function TimelineSetting() {
   const [timeline, setTimeline] = useState<TimelineItem[]>([]);
+  const removeItem = (index: number) => {
+    const updated = timeline.filter((_, i) => i !== index);
+    setTimeline(updated);
+  };
 
   useEffect(() => {
     const load = async () => {
@@ -52,7 +56,6 @@ export default function TimelineSetting() {
               updateItem(index, "title", e.target.value)
             }
           />
-
           <textarea
             className="w-full border p-2 mb-2"
             placeholder="Description"
@@ -61,7 +64,6 @@ export default function TimelineSetting() {
               updateItem(index, "description", e.target.value)
             }
           />
-
           <input
             type="file"
             accept="image/*"
@@ -69,7 +71,14 @@ export default function TimelineSetting() {
               e.target.files &&
               uploadImage(index, e.target.files[0])
             }
+            className="border-1 p-2 rounded-md mr-2 w-50 mb-2"
           />
+          <button
+            onClick={() => removeItem(index)}
+            className="bg-red-500 text-white px-3 py-2 rounded mb-2"
+          >
+            Delete
+          </button>
         </div>
       ))}
 

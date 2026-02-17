@@ -6,6 +6,7 @@ import { getStory } from "@/src/services/contentservice";
 export default function Story() {
   const [mounted, setMounted] = useState(false);
   const [text, setText] = useState("");
+  const [step, setStep] = useState(0); // 👈 เพิ่ม step
 
   useEffect(() => {
     const load = async () => {
@@ -29,12 +30,56 @@ export default function Story() {
     return words.slice(0, maxWords).join(" ") + "...";
   };
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-rose-50">
-      <div className="relative w-80 md:w-[500px]">
+  const handleClick = () => {
+    if (step < 2) {
+      setStep(step + 1);
+    }
+  };
 
-        {text ? (
-          <div className="bg-white shadow-xl rounded-lg p-8">
+  return (
+    <div
+      onClick={handleClick}
+      className="flex items-center justify-center min-h-screen bg-rose-50 cursor-pointer"
+    >
+      <div className="relative w-80 md:w-[500px] h-[400px] flex items-center justify-center">
+
+        {/* ----------------- ENVELOPE ----------------- */}
+        <div
+          className={`
+            absolute transition-all duration-700
+            ${step === 2 ? "opacity-0 translate-y-10" : "opacity-100"}
+          `}
+        >
+          {/* body */}
+          <div className="md:w-xl w-80 md:h-80 h-50 bg-rose-300 rounded shadow-lg relative overflow-hidden">
+
+            {/* flap */}
+            <div
+              className={`
+                absolute top-0 left-0 w-full h-1/2 bg-rose-400 origin-top
+                transition-transform duration-700
+                ${step >= 1 ? "rotate-x-180" : ""}
+              `}
+              style={{
+                clipPath: "polygon(0 0, 50% 100%, 100% 0)"
+              }}
+            />
+          </div>
+        </div>
+
+        {/* ----------------- LETTER ----------------- */}
+        {text && (
+          <div
+            className={`
+              absolute bg-white shadow-xl rounded-lg p-8 w-80 md:w-[500px]
+              transition-all duration-700
+              ${
+                step === 2
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-50 translate-y-10"
+              }
+            `}
+          >
             <h1 className="text-2xl font-bold text-center mb-4 text-rose-600">
               Forever Begins with You
             </h1>
@@ -42,10 +87,6 @@ export default function Story() {
             <p className="text-gray-700 whitespace-pre-line">
               {limitWords(text, 150)}
             </p>
-          </div>
-        ) : (
-          <div className="text-gray-400 text-center">
-            No story available
           </div>
         )}
 

@@ -44,7 +44,7 @@ export default function TimelineSpecial() {
           return (
             <div
               key={index}
-              className="grid md:grid-cols-[1fr_auto_1fr] items-center mb-12"
+              className="grid md:grid-cols-[1fr_auto_1fr] items-center justify-center-safe mb-12"
             >
               {/* LEFT */}
               <div className={isLeft ? "md:pr-6" : ""}>
@@ -52,7 +52,7 @@ export default function TimelineSpecial() {
               </div>
 
               {/* DOT */}
-              <div className="flex justify-center">
+              <div className="flex justify-center z-10">
                 <div className="w-5 h-5 bg-pink-500 rounded-full border-4 border-white hidden md:block"></div>
               </div>
 
