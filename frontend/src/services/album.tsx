@@ -40,7 +40,7 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <div className="relative w-[350px] md:w-[900px] h-[300px] md:h-[500px] bg-[#fffaf0] shadow-2xl rounded-lg flex overflow-hidden">
+      <div className="relative w-[350px] md:w-[900px] h-[400px] md:h-[500px] bg-[#fffaf0] shadow-2xl rounded-lg flex overflow-hidden">
 
         {/* LEFT */}
         <div className="w-1/2 p-6 border-r border-amber-200 flex flex-col gap-6">
@@ -99,7 +99,7 @@ function AlbumCard({
       {src ? (
         <img
           src={src}
-          className="w-full h-32 md:h-40 object-cover"
+          className="w-full h-32 md:h-40 object-contain"
         />
       ) : (
         <div className="w-full h-32 md:h-40 flex items-center justify-center text-gray-400">
